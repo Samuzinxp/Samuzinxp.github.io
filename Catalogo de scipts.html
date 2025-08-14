@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel da Costa Oliveira - Portfólio de Links</title>
+    <style>
+        /* 1. RESET E CONFIGURAÇÕES GLOBAIS */
+        :root {
+            --cor-primaria: #00aaff;
+            --cor-secundaria: #0077cc;
+            --cor-fundo: #121212;
+            --cor-superficie: #1e1e1e;
+            --cor-texto-primario: #e0e0e0;
+            --cor-texto-secundario: #a0a0a0;
+            --sombra: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --borda-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-primario);
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita a barra de rolagem horizontal */
+        }
+
+        /* 2. LAYOUT PRINCIPAL */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 0; /* Ajustado para melhor espaçamento em telas pequenas */
+        }
+
+        /* 3. CABEÇALHO E NAVEGAÇÃO */
+        .header {
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--cor-primaria);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--cor-texto-primario);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--cor-primaria);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover {
+            color: var(--cor-primaria);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* 4. SEÇÃO HERO (APRESENTAÇÃO) */
+        .hero {
+            text-align: center;
+            padding: 80px 20px; /* Adicionado padding lateral */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, var(--cor-primaria), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5em;
+            color: var(--cor-texto-secundario);
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: var(--cor-primaria);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--cor-secundaria);
+            transform: translateY(-3px);
+        }
+
+        /* 5. SEÇÕES DE CONTEÚDO */
+        .section {
+            padding: 60px 20px; /* Adicionado padding lateral */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--cor-primaria);
+            border-radius: 2px;
+        }
+
+        /* 6. GRID DE CARDS */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Reduzido o minmax para melhor ajuste */
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--cor-superficie);
+            border-radius: var(--borda-radius);
+            box-shadow: var(--sombra);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 170, 255, 0.3);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--cor-primaria);
+        }
+
+        .card-description {
+            color: var(--cor-texto-secundario);
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            padding: 20px 25px;
+            background-color: rgba(0, 0, 0, 0.2);
+            margin-top: auto; /* Empurra o rodapé para o fim do card */
+        }
+
+        .card-link {
+            color: var(--cor-primaria);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+        
+        .card-link:hover {
+            color: #ffffff;
+        }
+
+        /* 7. RODAPÉ */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--cor-superficie);
+        }
+
+        .footer p {
+            color: var(--cor-texto-secundario);
+        }
+        
+        /* 8. RESPONSIVIDADE - AJUSTES MELHORADOS */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8em; /* Ajuste para caber melhor */
+            }
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+            .section-title {
+                font-size: 2em;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+             .hero h1 {
+                font-size: 2.2em; /* Mais um ajuste para telas bem pequenas */
+            }
+            .nav-links {
+                font-size: 0.9em; /* Diminui a fonte do menu */
+                gap: 15px;
+            }
+        }
+        
+        /* 9. ANIMAÇÕES DE ENTRADA */
+        .fade-in {
+            animation: fadeInAnimation 1s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInAnimation {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">SCO</a>
+            <ul class="nav-links">
+                <li><a href="#ferramentas">Ferramentas</a></li>
+                <li><a href="#materiais">Materiais de Estudo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero container fade-in">
+            <h1>Samuel da Costa Oliveira</h1>
+            <p class="subtitle">Bem-vindo ao meu catálogo digital de links e recursos.</p>
+            <a href="#ferramentas" class="cta-button">Explorar Recursos</a>
+        </section>
+
+        <section id="ferramentas" class="section container">
+            <h2 class="section-title">Ferramentas Úteis</h2>
+            <div class="card-grid">
+                <div class="card fade-in" style="animation-delay: 0.2s;">
+                    <div class="card-content">
+                        <h3 class="card-title">Taskitos</h3>
+                        <p class="card-description">Gerenciador de tarefas online para organizar suas atividades e projetos com eficiência.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://taskitos.cupiditys.lol/" target="_blank" class="card-link">
+                            Acessar Ferramenta <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="card fade-in" style="animation-delay: 0.4s;">
+                    <div class="card-content">
+                        <h3 class="card-title">Speakify</h3>
+                        <p class="card-description">Ferramenta de realização de tarefas do speak.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://speakify.cupiditys.lol/" target="_blank" class="card-link">
+                            Acessar Ferramenta <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="card fade-in" style="animation-delay: 0.6s;">
+                    <div class="card-content">
+                        <h3 class="card-title">Leia SP</h3>
+                        <p class="card-description">Link para o aplicativo de leitura digital "Leia SP", disponível na Google Play Store.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://leiasp.cupiditys.lol/" target="_blank" class="card-link">
+                            Acessar Ferramenta <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="card fade-in" style="animation-delay: 0.8s;">
+                    <div class="card-content">
+                        <h3 class="card-title">Redação</h3>
+                        <p class="card-description">Plataforma online para realizar suas redações.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://redacao.cupiditys.lol/" target="_blank" class="card-link">
+                            Acessar Ferramenta <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="materiais" class="section container">
+            <h2 class="section-title">Materiais de Estudo - 2º Ano</h2>
+            <div class="card-grid">
+                <div class="card fade-in" style="animation-delay: 0.2s;">
+                    <div class="card-content">
+                        <h3 class="card-title">Língua Portuguesa e Matemática</h3>
+                        <p class="card-description">Caderno do Aluno (Volume 3) para o 2º ano do Ensino Médio. Material oficial do Acervo CMSP.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://acervocmsp.educacao.sp.gov.br/138013/1262487.pdf" target="_blank" class="card-link">
+                            Abrir PDF <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="card fade-in" style="animation-delay: 0.4s;">
+                    <div class="card-content">
+                        <h3 class="card-title">Fisica, Biologia, Quimica</h3>
+                        <p class="card-description">Caderno do Aluno (Volume 3) para o 2º ano do Ensino Médio. Material oficial do Acervo CMSP.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://acervocmsp.educacao.sp.gov.br/138040/1262595.pdf" target="_blank" class="card-link">
+                            Abrir PDF <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="card fade-in" style="animation-delay: 0.6s;">
+                    <div class="card-content">
+                        <h3 class="card-title">Historia e Geografia</h3>
+                        <p class="card-description">Caderno do Aluno (Volume 3) para o 2º ano do Ensino Médio. Material oficial do Acervo CMSP.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://acervocmsp.educacao.sp.gov.br/138038/1262582.pdf" target="_blank" class="card-link">
+                            Abrir PDF <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Samuel da Costa Oliveira. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // JAVASCRIPT PARA ANIMAÇÕES DE ENTRADA
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleciona todos os elementos que devem ter a animação
+            const faders = document.querySelectorAll('.fade-in');
+
+            // Configurações do observador de interseção
+            const appearOptions = {
+                threshold: 0.2, // O elemento aparece quando 20% dele está visível
+                rootMargin: "0px 0px -50px 0px" // Começa a observar um pouco antes do elemento entrar na tela
+            };
+
+            // Cria um novo observador
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    // Se o elemento não estiver intersectando (visível), não faz nada
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        // Se estiver visível, a animação CSS já é acionada pela classe 'fade-in'
+                        // E então paramos de observar o elemento para não repetir a animação
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            // Adiciona o observador a cada um dos elementos
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
